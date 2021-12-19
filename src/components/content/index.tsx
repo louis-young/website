@@ -1,6 +1,6 @@
 import React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import styles from "./styles.module.css";
+import * as styles from "./styles.module.css";
 import type { ContentProps } from "./types";
 
 export const Content = ({ content }: ContentProps) => {
