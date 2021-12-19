@@ -16,7 +16,7 @@ module.exports = {
     },
 
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: "gatsby-plugin-google-gtag",
       options: {
         trackingIds: ["G-CQ5X65RCG6"],
       },
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-layout",
       options: {
-        component: require.resolve("./src/components/layout.jsx"),
+        component: require.resolve("./src/components/layout/index.tsx"),
       },
     },
     "gatsby-plugin-image",
