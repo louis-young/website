@@ -5,72 +5,19 @@ import { Meta } from "../components/meta";
 import { Post } from "../components/post";
 import { Container } from "../components/container";
 
-interface HomePageProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
-}
-
-const HomePage = ({ data }: HomePageProps) => {
-  const posts = data.allMdx.nodes;
-
+const HomePage = () => {
   return (
     <>
       <Meta />
 
       <section>
         <h1 className="py-14 md:py-20 text-center text-2xl md:text-4xl font-bold tracking-tight leading-normal md:leading-normal">
-          Software development blog
-          <br />
-          by Louis Young
+          Software development
         </h1>
       </section>
-
-      <Container>
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 mt-6 mb-32">
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {posts.map((post: any) => {
-            return (
-              <Post
-                key={post.fields.slug}
-                title={post.frontmatter.title}
-                image={post.frontmatter.image}
-                link={post.fields.slug}
-                excerpt={truncate(post.frontmatter.description)}
-              />
-            );
-          })}
-        </section>
-      </Container>
     </>
   );
 };
-
-export const pageQuery = graphql`
-  query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt(pruneLength: 165)
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-          image {
-            childImageSharp {
-              gatsbyImageData(
-                width: 500
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 // eslint-disable-next-line import/no-default-export
 export default HomePage;
