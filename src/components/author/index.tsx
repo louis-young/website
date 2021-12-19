@@ -1,9 +1,8 @@
 import React from "react";
-
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const Author = () => {
+export const Author = () => {
   const data = useStaticQuery(graphql`
     query AuthorQuery {
       avatar: file(absolutePath: { regex: "/author/author.jpg/" }) {
@@ -18,7 +17,7 @@ const Author = () => {
     }
   `);
 
-  const avatar = getImage(data?.avatar);
+  const avatar = getImage(data.avatar);
 
   return (
     <a
@@ -28,15 +27,15 @@ const Author = () => {
       className="block hover:opacity-80 transition duration-200"
     >
       <figure className="flex items-center">
-        <GatsbyImage
-          image={avatar}
-          className="w-12 h-12 rounded-full mr-4"
-          alt="Louis Young"
-        />
+        {avatar && (
+          <GatsbyImage
+            image={avatar}
+            className="w-12 h-12 rounded-full mr-4"
+            alt="Louis Young"
+          />
+        )}
         <figcaption className="text-xl font-bold">Louis Young</figcaption>
       </figure>
     </a>
   );
 };
-
-export default Author;

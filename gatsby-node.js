@@ -5,12 +5,15 @@ const { createFilePath } = require("gatsby-source-filesystem");
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const postTemplate = path.resolve("./src/templates/post.js");
+  const postTemplate = path.resolve("./src/templates/post/index.tsx");
 
   const result = await graphql(
     `
       {
-        allMdx(sort: { fields: [frontmatter___date], order: ASC }, limit: 1000) {
+        allMdx(
+          sort: { fields: [frontmatter___date], order: ASC }
+          limit: 1000
+        ) {
           nodes {
             id
             fields {
@@ -19,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-    `
+    `,
   );
 
   const posts = result.data.allMdx.nodes;

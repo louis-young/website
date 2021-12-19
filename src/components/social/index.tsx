@@ -1,10 +1,12 @@
 import React from "react";
+import type { SocialProps } from "./types";
 
-const Social = ({ link, icon }) => {
+export const Social = ({ title, link, icon }: SocialProps) => {
   return (
     <li>
       <a
         href={link}
+        title={title}
         target="_blank"
         rel="noopnener noreferrer"
         className="block w-5 text-black dark:text-white fill-current hover:opacity-80 transition duration-200"
@@ -14,5 +16,3 @@ const Social = ({ link, icon }) => {
     </li>
   );
 };
-
-export default Social;

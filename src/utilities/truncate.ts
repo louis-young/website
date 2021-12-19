@@ -1,4 +1,4 @@
-const truncate = (string) => {
+export const truncate = (string: string) => {
   const length = 165;
 
   const ellipsis = "...";
@@ -11,5 +11,3 @@ const truncate = (string) => {
 
   return `${truncatedString}${ellipsis}`;
 };
-
-export default truncate;

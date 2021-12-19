@@ -1,33 +1,11 @@
 import React from "react";
-
 import Highlight, { defaultProps } from "prism-react-renderer";
-
 import nightOwl from "prism-react-renderer/themes/nightOwl";
 import palenight from "prism-react-renderer/themes/palenight";
+import type { CodeProps } from "./types";
+import { calculateLinesToHighlight } from "./utilities";
 
-const calculateLinesToHighlight = (meta) => {
-  const RegEx = /{([\d,-]+)}/;
-
-  if (RegEx.test(meta)) {
-    const lineNumbers = RegEx.exec(meta)[1]
-      .split(",")
-      .map((v) => v.split("-").map((y) => parseInt(y, 10)));
-
-    return (index) => {
-      const lineNumber = index + 1;
-
-      const inRange = lineNumbers.some(([start, end]) =>
-        end ? lineNumber >= start && lineNumber <= end : lineNumber === start
-      );
-
-      return inRange;
-    };
-  } else {
-    return () => false;
-  }
-};
-
-const Code = ({ code, language, metastring }) => {
+export const Code = ({ code, language, metastring }: CodeProps) => {
   const shouldHighlightLine = calculateLinesToHighlight(metastring);
 
   const dark = false; // Temporary.
@@ -55,12 +33,14 @@ const Code = ({ code, language, metastring }) => {
                 {...getLineProps({
                   line,
                   key: i,
-                  style: shouldHighlightLine(i) && {
-                    backgroundColor: "rgba(201, 167, 255, 0.2)",
-                    margin: "0px -1rem 0 -0.75rem",
-                    padding: " 0px 7px",
-                    borderLeft: "5px solid rgb(201, 167, 255)",
-                  },
+                  style: shouldHighlightLine(i)
+                    ? {
+                        backgroundColor: "rgba(201, 167, 255, 0.2)",
+                        margin: "0px -1rem 0 -0.75rem",
+                        padding: " 0px 7px",
+                        borderLeft: "5px solid rgb(201, 167, 255)",
+                      }
+                    : undefined,
                 })}
               >
                 <span
@@ -84,5 +64,3 @@ const Code = ({ code, language, metastring }) => {
     </Highlight>
   );
 };
-
-export default Code;

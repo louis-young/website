@@ -1,8 +1,7 @@
 import React from "react";
-
 import { Helmet } from "react-helmet";
-
-import image from "../../content/assets/software-development-articles.jpg";
+import image from "../../../content/assets/software-development-articles.jpg";
+import type { MetaProps } from "./types";
 
 const BASE_URL = "https://blog.louisyoung.co.uk";
 
@@ -16,7 +15,12 @@ const base = {
   twitter: "louisryoungg",
 };
 
-const Meta = ({ title, description, image, slug }) => {
+export const Meta = ({
+  title,
+  description,
+  image,
+  slug,
+}: Partial<MetaProps>) => {
   return (
     <Helmet>
       <html lang="en" />
@@ -25,25 +29,44 @@ const Meta = ({ title, description, image, slug }) => {
 
       <meta name="theme-color" content="#000000" />
 
-      <link rel="canonical" href={slug ? `${BASE_URL}/${slug}` : base.canonical} />
+      <link
+        rel="canonical"
+        href={slug ? `${BASE_URL}/${slug}` : base.canonical}
+      />
 
       <meta name="description" content={description || base.description} />
 
-      <meta property="og:url" content={slug ? `${BASE_URL}/${slug}` : base.canonical} />
+      <meta
+        property="og:url"
+        content={slug ? `${BASE_URL}/${slug}` : base.canonical}
+      />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title || base.short} />
       <meta property="og:site_name" content="Louis Young" />
-      <meta property="og:description" content={description || base.description} />
-      <meta property="og:image" content={image ? `${BASE_URL}${image}` : base.image} />
+      <meta
+        property="og:description"
+        content={description || base.description}
+      />
+      <meta
+        property="og:image"
+        content={image ? `${BASE_URL}${image}` : base.image}
+      />
 
       <meta name="twitter:site" content={`@${base.twitter}`} />
-      <meta name="twitter:url" content={slug ? `${BASE_URL}/${slug}` : base.canonical} />
+      <meta
+        name="twitter:url"
+        content={slug ? `${BASE_URL}/${slug}` : base.canonical}
+      />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title || base.short} />
-      <meta name="twitter:description" content={description || base.description} />
-      <meta name="twitter:image" content={image ? `${BASE_URL}${image}` : base.image} />
+      <meta
+        name="twitter:description"
+        content={description || base.description}
+      />
+      <meta
+        name="twitter:image"
+        content={image ? `${BASE_URL}${image}` : base.image}
+      />
     </Helmet>
   );
 };
-
-export default Meta;

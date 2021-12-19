@@ -1,6 +1,5 @@
 import React from "react";
-
-import Meta from "../components/meta";
+import { Meta } from "../components/meta";
 
 const NotFoundPage = () => {
   return (
@@ -16,4 +15,5 @@ const NotFoundPage = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default NotFoundPage;

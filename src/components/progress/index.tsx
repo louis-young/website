@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import styles from "./styles.module.css";
 
-import * as styles from "./progress.module.css";
-
-const Progress = () => {
+export const Progress = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -26,5 +25,3 @@ const Progress = () => {
 
   return <progress className={styles.progress} value={progress} max="100" />;
 };
-
-export default Progress;

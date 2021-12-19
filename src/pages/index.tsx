@@ -1,13 +1,16 @@
 import React from "react";
 import { graphql } from "gatsby";
-
-import truncate from "../utilities/truncate";
-
-import Meta from "../components/meta";
-import Post from "../components/post";
+import { truncate } from "../utilities/truncate";
+import { Meta } from "../components/meta";
+import { Post } from "../components/post";
 import { Container } from "../components/container";
 
-const Index = ({ data }) => {
+interface HomePageProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}
+
+const HomePage = ({ data }: HomePageProps) => {
   const posts = data.allMdx.nodes;
 
   return (
@@ -24,7 +27,8 @@ const Index = ({ data }) => {
 
       <Container>
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 mt-6 mb-32">
-          {posts.map((post) => {
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {posts.map((post: any) => {
             return (
               <Post
                 key={post.fields.slug}
@@ -40,8 +44,6 @@ const Index = ({ data }) => {
     </>
   );
 };
-
-export default Index;
 
 export const pageQuery = graphql`
   query {
@@ -69,3 +71,6 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+// eslint-disable-next-line import/no-default-export
+export default HomePage;

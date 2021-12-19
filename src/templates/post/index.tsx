@@ -1,24 +1,27 @@
 import React from "react";
-
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Author } from "../../components/author";
+import { Meta } from "../../components/meta";
+import { Container } from "../../components/container";
+import { Progress } from "../../components/progress";
+import { Content } from "../../components/content";
+import { Date } from "../../components/date";
+import type { PostProps } from "./types";
 
-import Author from "../components/author";
-import Meta from "../components/meta";
-import { Container } from "../components/container";
-import Progress from "../components/progress";
-import Content from "../components/content";
-import Date from "../components/date";
-
-const Post = ({ data }) => {
+const Post = ({ data }: PostProps) => {
   const post = data.mdx;
+
+  const image = getImage(post.frontmatter.image);
 
   return (
     <>
       <Meta
         title={post.frontmatter.title}
         description={post.excerpt}
-        image={getImage(post.frontmatter.image)}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        image={image}
         slug={post.slug}
       />
 
@@ -34,14 +37,16 @@ const Post = ({ data }) => {
             <Author />
           </div>
 
-          <GatsbyImage
-            image={getImage(post.frontmatter.image)}
-            alt={post.frontmatter.title}
-            className="mb-8 md:mb-16 sm:mx-0 w-full h-full max-h-35 object-cover rounded"
-          />
+          {image && (
+            <GatsbyImage
+              image={image}
+              alt={post.frontmatter.title}
+              className="mb-8 md:mb-16 sm:mx-0 w-full h-full max-h-35 object-cover rounded"
+            />
+          )}
 
           <div className="max-w-2xl mx-auto mb-6 text-lg">
-            <Date dateString={post.frontmatter.date} />
+            <Date date={post.frontmatter.date} />
           </div>
 
           <Content content={post.body} />
@@ -50,8 +55,6 @@ const Post = ({ data }) => {
     </>
   );
 };
-
-export default Post;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
@@ -77,3 +80,6 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+// eslint-disable-next-line import/no-default-export
+export default Post;

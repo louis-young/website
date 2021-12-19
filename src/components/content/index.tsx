@@ -1,10 +1,9 @@
 import React from "react";
-
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import styles from "./styles.module.css";
+import type { ContentProps } from "./types";
 
-import * as styles from "./content.module.css";
-
-const Content = ({ content }) => {
+export const Content = ({ content }: ContentProps) => {
   return (
     <div className="max-w-2xl mx-auto">
       <div className={styles.markdown}>
@@ -13,5 +12,3 @@ const Content = ({ content }) => {
     </div>
   );
 };
-
-export default Content;

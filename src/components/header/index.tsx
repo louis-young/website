@@ -1,10 +1,9 @@
 import React from "react";
+import { Container } from "../container";
+import { Logo } from "../logo";
+import { Socials } from "../socials";
 
-import { Container } from "./container";
-import Logo from "./logo";
-import Socials from "./socials";
-
-const Header = () => {
+export const Header = () => {
   return (
     <header className="py-4">
       <Container>
@@ -16,5 +15,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
