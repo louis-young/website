@@ -4,7 +4,7 @@ import { Header } from "../header";
 import { Markdown } from "../markdown";
 import type { LayoutProps } from "./types";
 
-export const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <section className="dark:bg-dark dark:text-white">
       <Header />
@@ -17,3 +17,6 @@ export const Layout = ({ children }: LayoutProps) => {
     </section>
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default Layout;
