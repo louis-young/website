@@ -18,7 +18,7 @@ const links = [
 export const Header = () => {
   return (
     <header className="py-10">
-      <Container className="flex items-center justify-between">
+      <Container size="large" className="flex items-center justify-between">
         <Logo />
 
         <Navigation links={links} />
