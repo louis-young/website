@@ -17,4 +17,3 @@ jobs:
           npm run format # Run formatter.
           npm run lint # Run code linter.
           npm run lint:ls # Run file system linter.
-          npm run test # Run tests.
