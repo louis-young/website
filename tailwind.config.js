@@ -9,6 +9,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        Font: ["Mulish", "sans-serif"],
+      },
       colors: {
         dark: "#0f1420",
         darker: "#0d0f17",

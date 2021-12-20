@@ -10,11 +10,16 @@ const HomePage = () => {
     <>
       <Meta />
 
-      <section>
-        <h1 className="py-14 md:py-20 text-center text-2xl md:text-4xl font-bold tracking-tight leading-normal md:leading-normal">
-          Software development
-        </h1>
-      </section>
+      <Container>
+        <section>
+          <article>
+            <h1 className="py-14 md:py-20 text-2xl md:text-4xl font-medium max-w-lg">
+              Helping businesses by creating beautiful software that solves real
+              problems.
+            </h1>
+          </article>
+        </section>
+      </Container>
     </>
   );
 };
